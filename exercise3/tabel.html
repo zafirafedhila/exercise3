@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>EXERCISE 3</title>
+    <link rel="stylesheet" href="table.css">
+</head>
+
+<body>
+    <div class="note">
+        NB :dapat dicari dengan nama, rotasi, orbit, diameter.
+    </div>
+    <div class="filter-search">
+        <h2>Data SWAPI</h2>
+        Name : <input type="text" placeholder="Cari Data">
+        <button>filter</button>
+        <button>refresh</button>
+    </div>
+
+    <table class="tableMaster">
+        <tr>
+            <td>Name</td>
+            <td>rotation_period</td>
+            <td>orbital_period</td>
+            <td>diameter</td>
+            <td>climate</td>
+            <td>gravity</td>
+            <td>terrain</td>
+            <td>surface water</td>
+            <td>populatio</td>
+        </tr>
+    </table>
+
+
+    <div id="label"></div>
+    <div id="hasil"></div>
+
+    <script src="table.js"></script>
+    <script>
+        var result = data.results;
+        var tableRow = document.querySelectorAll("table")[0];
+        var hasil = document.getElementById("hasil");
+        var label = document.getElementById("label");
+        var inputHasil = document.querySelectorAll("input")[0];
+        var btnHasil = document.querySelectorAll("button")[0];
+        var btnReset = document.querySelectorAll("button")[1];
+
+        var dataJS = function () {
+            for (var i = 0; i < result.length; i++) {
+                tableRow.innerHTML += "<tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period +
+                    "</td><td>" +
+                    result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate +
+                    "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water +
+                    "</td><td>" + result[i].population + "</td></tr>";
+            }
+        }
+
+        window.addEventListener("load", function () {
+            tableRow.innerHTML +=
+                "<img src='http://tuongtac.daugiatruyenhinh.com/images/load.gif' class='loading-data table'>";
+            setTimeout(function () {
+                document.getElementsByClassName("table")[0].style.display = "none";
+            }, 999)
+            setTimeout(dataJS, 1000);
+        })
+
+
+        function cari() {
+            var adaData = 0;
+            for (var i = 0; i < result.length; i++) {
+                if (inputHasil.value == result[i].name) {
+                    adaData = 1;
+                    label.innerHTML = "<h3>Pencarian Hasil Name '" + result[i].name + "' :</h3>";
+                    hasil.innerHTML = "<table class='tableMaster'><tr><td><strong>" + result[i].name +
+                        "</strong></td><td>" +
+                        result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter +
+                        "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain +
+                        "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population +
+                        "</td></tr></table>";
+                } else if (inputHasil.value == result[i].rotation_period) {
+                    adaData = 1;
+                    label.innerHTML = "<h3>Pencarian Hasil Rotasi '" + result[i].rotation_period + "' :</h3>";
+                    hasil.innerHTML = "<table class='tableMaster'><tr><td>" + result[i].name + "</td><td><strong>" +
+                        result[i].rotation_period +
+                        "</strong></td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter +
+                        "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain +
+                        "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population +
+                        "</td></tr></table>";
+                } else if (inputHasil.value == result[i].orbital_period) {
+                    adaData = 1;
+                    label.innerHTML = "<h3>Pencarian Hasil Orbit '" + result[i].orbital_period + "' :</h3>";
+                    hasil.innerHTML = "<table class='tableMaster'><tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period +
+                        "</td><td><strong>" + result[i].orbital_period + "</strong></td><td>" + result[i].diameter +
+                        "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" +
+                        result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population +
+                        "</td></tr></table>";
+                } else if (inputHasil.value == result[i].diameter) {
+                    adaData = 1;
+                    label.innerHTML = "<h3>Pencarian Hasil Diameter '" + result[i].diameter + "' :</h3>";
+                    hasil.innerHTML = "<table class='tableMaster'><tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period +
+                        "</td><td>" + result[i].orbital_period + "</td><td><strong>" + result[i].diameter +
+                        "</stong></td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" +
+                        result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population +
+                        "</td></tr></table>";
+                }
+            }
+            // label.innerHTML = "<h3>Pencarian Hasil '" + inputHasil.value + "' :</h3>";
+            if (adaData === 0) {
+                label.innerHTML = "<h3>Pencarian Hasil '" + inputHasil.value + "' :</h3>";
+                hasil.innerHTML = "<span class='not-found'>x</span>Tidak ada hasil";
+            }
+        }
+
+        function refresh() {
+            label.innerHTML = "";
+            hasil.innerHTML = "";
+            inputHasil.value = "";
+        }
+
+
+        btnHasil.addEventListener("click", function () {
+            label.innerHTML = "<h3>Sedang mencari '" + inputHasil.value + "' :</h3>";
+            hasil.innerHTML =
+               "<img src='http://tuongtac.daugiatruyenhinh.com/images/load.gif' class='loading-data'>";
+            setTimeout(cari, 3000);
+        })
+        btnReset.addEventListener("click", refresh)
+    </script>
+</body>
+
+</html>

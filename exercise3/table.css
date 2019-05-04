@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.note {
+    background-color: #f79bef;
+    color: white;
+    padding: 15px;
+}
+
+.filter-search {
+    margin: 45px auto 25px auto;
+    font-size: 15px;
+    display: block;
+    width: 50%;
+    text-align: center;
+}
+
+.filter-search input {
+    padding: 8px 10px;
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 5px;
+    color: black;
+    outline: none !important;
+}
+
+.filter-search button {
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(118, 107, 160);
+    color: white;
+    cursor: pointer;
+    outline: none !important;
+    transition: all .2s ease-in-out;
+}
+
+.filter-search button:hover {
+    background-color: rgb(62, 66, 121);
+}
+
+.filter-search button:active {
+    transform: scale(2, 2);
+}
+
+.tableMaster {
+    border: 3px solid black;
+    width: 97%;
+    overflow: auto;
+    margin: 40px auto;
+}
+
+.tableMaster tbody:first-child tr {
+    background-color: #cf4eaf;
+    text-transform: capitalize;
+}
+
+.tableMaster tbody:nth-child(odd):not(:first-child) tr {
+    background-color: #ffcccc;
+    text-transform: capitalize;
+}
+
+.tableMaster tbody:nth-child(even):not(:first-child) tr {
+    background-color: rgb(116, 178, 236);
+}
+
+.tableMaster tbody:not(:first-child) tr:hover {
+    background-color: #750b45;
+
+}
+
+.tableMaster tr td {
+    padding: 10px;
+}
+
+.not-found {
+    display: inline-block;
+    background-color:#f79bef;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 75px;
+    margin-right: 8px;
+    transition: all .5s ease-in-out;
+}
+
+.tableMaster strong {
+    background:#f79bef;
+    color: white;
+    font-style: italic;
+}
+
+.loading-data {
+    width: 44px;
+    margin: 35px auto;
+    display: block;
+}
+
+img.loading-data.table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
